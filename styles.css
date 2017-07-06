@@ -49,8 +49,14 @@ body, html {
 }
 
 .game-square {
+  font-family: 'Love Ya Like A Sister', cursive;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 190px;
   width: 190px;
+  font-size: 15em;
+  color: white;
 }
 
 .row-one, .row-two, .row-three {
