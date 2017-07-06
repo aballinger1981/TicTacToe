@@ -3,13 +3,40 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0">
   <meta charset="utf-8">
-  <tite>Tic Tac Toe</tite>
+  <title>Tic Tac Toe</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
   integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
   crossorigin="anonymous">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
 
   <body>
+    <div id="game-container">
+      <div id="player-data">
+        <div id="player-one">Player 1: 0</div>
+        <div id="player-two">Player 2: 0</div>
+      </div>
+      <div id="game-board">
+        <div class="row-one">
+          <div id="square-one" class="game-square"></div>
+          <div id="square-two" class="game-square"></div>
+          <div id="square-three" class="game-square"></div>
+        </div>
+        <div class="row-two">
+          <div id="square-four" class="game-square"></div>
+          <div id="square-five" class="game-square"></div>
+          <div id="square-six" class="game-square"></div>
+        </div>
+        <div class="row-three">
+          <div id="square-seven" class="game-square"></div>
+          <div id="square-eight" class="game-square"></div>
+          <div id="square-nine" class="game-square"></div>
+        </div>
+      </div>
+      <div id="reset-container">
+        <div id="reset-button">Reset</div>
+      </div>
+    </div>
 
   </body>
   <script type="text/javascript" src="./script.js"></script>

@@ -1,0 +1,61 @@
+body, html {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+#game-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 960px;
+  width: 866.5px;
+  margin: auto;
+  background-image: url("./images/chalkboard_with_border.png");
+  background-size: cover;
+  border-radius: 20px;
+}
+
+#player-data {
+  display: flex;
+  justify-content: space-between;
+  width: 75%;
+  font-size: 3em;
+  color: white;
+}
+
+#reset-container {
+  display: flex;
+  width: 75%;
+  justify-content: flex-start;
+  font-size: 3em;
+  color: white;
+}
+
+.game-square {
+  height: 200px;
+  width: 200px;
+}
+
+.row-one, .row-two, .row-three {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+#square-one, #square-two, #square-four, #square-five {
+  border-right: 4px solid white;
+  border-bottom: 4px solid white;
+}
+
+#square-three, #square-six {
+  border-bottom: 4px solid white;
+}
+
+#square-seven, #square-eight {
+  border-right: 4px solid white;
+}
+
