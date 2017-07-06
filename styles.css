@@ -35,9 +35,14 @@ body, html {
   color: white;
 }
 
+#game-board {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
 .game-square {
-  height: 200px;
-  width: 200px;
+  height: 190px;
+  width: 190px;
 }
 
 .row-one, .row-two, .row-three {
