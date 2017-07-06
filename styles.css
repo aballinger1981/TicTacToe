@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+
 body, html {
   height: 100%;
   display: flex;
@@ -27,7 +29,13 @@ body, html {
   color: white;
 }
 
+.score {
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: 1.2em;
+}
+
 #reset-container {
+  font-family: 'Love Ya Like A Sister', cursive;
   display: flex;
   width: 75%;
   justify-content: flex-start;
