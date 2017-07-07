@@ -58,6 +58,7 @@ function gamePieceSelectionHandler() {
 
       xOrO = xAndO[i].id;
       setPlayerTwoName();
+      initialComputerTurn();
     });
   }
 }
@@ -67,4 +68,47 @@ function setPlayerTwoName() {
 
   const playerTwo = document.getElementById("player-two");
   playerTwo.innerHTML = 'Computer: <span class="score"> 0</span>';
+}
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * (9 - 1 + 1)) + 1;
+}
+
+function initialComputerTurn() {
+  if (numberOfPlayers === "two-players") { return; }
+
+  const randomNumber = getRandomNumber();
+  const square = document.getElementById(randomNumber);
+
+  setTimeout(() => {
+    if (xOrO === 'x') {
+      square.innerHTML = 'O';
+    } else {
+      square.innerHTML = 'X';
+    }
+    playerOneTurn();
+  }, 3000);
+}
+
+function playerOneTurn() {
+  const gameSquares = document.getElementsByClassName("game-square");
+
+  for (let i = 0; i < gameSquares.length; i++) {
+    gameSquares[i].addEventListener("click", selectedSquareHandler(gameSquares, gameSquares[i]));
+  }
+}
+
+function selectedSquareHandler(gameSquares, square) {
+  const squareSpan = square.getElementsByClassName("square-content");
+  console.log(squareSpan);
+  squareSpan.onclick = function () {
+    if (xOrO === 'x') {
+      squareSpan.innerHTML = 'X';
+    } else {
+      squareSpan.innerHTML = 'O';
+    }
+    for (let i = 0; i < gameSquares.length; i++) {
+      gameSquares[i].removeEventListener("click", selectedSquareHandler);
+    }
+  }
 }
