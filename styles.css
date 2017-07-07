@@ -29,11 +29,10 @@ body, html {
   position: absolute;
   color: white;
   font-size: 6em;
-  z-index: 1;
 }
 
-#player-select:hover {
-  animation: fadeOut 3s linear forwards;
+.player-choice {
+  font-family: 'Love Ya Like A Sister', cursive;
 }
 
 @keyframes fadeOut {
@@ -48,8 +47,22 @@ body, html {
   }
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
 #player-data {
   display: flex;
+  visibility: hidden;
   justify-content: space-between;
   width: 75%;
   font-size: 3em;
@@ -64,17 +77,17 @@ body, html {
 #reset-container {
   font-family: 'Love Ya Like A Sister', cursive;
   display: flex;
+  visibility: hidden;
   width: 75%;
   justify-content: flex-start;
   font-size: 3em;
   color: white;
-  animation: 1s fadeIn;
 }
 
 #game-board {
   padding-top: 30px;
   padding-bottom: 30px;
-  z-index: 0;
+  visibility: hidden;
 }
 
 .game-square {
