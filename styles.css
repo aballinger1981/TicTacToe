@@ -8,6 +8,10 @@ body, html {
   background-color: black;
 }
 
+.player-choice, .xAndO, #reset-button {
+  cursor: pointer;
+}
+
 #game-container {
   display: flex;
   justify-content: center;
@@ -35,6 +39,10 @@ body, html {
   font-family: 'Love Ya Like A Sister', cursive;
 }
 
+.player-choice:hover {
+  color: grey;
+}
+
 @keyframes fadeOut {
   0% {
     opacity: 1;
@@ -58,6 +66,43 @@ body, html {
     opacity: 1;
     visibility: visible;
   }
+}
+
+#or {
+  font-family: 'Love Ya Like A Sister', cursive;
+  font-size: .5em;
+}
+
+#game-piece-select {
+  font-family: 'Love Ya Like A Sister', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  color: white;
+  font-size: 4em;
+  text-align: center;
+  position: absolute;
+}
+
+#game-pieces {
+  display: flex;
+  flex-direction: row;
+}
+
+#game-pieces span:first-of-type {
+  margin-right: 100px;
+}
+
+.xAndO {
+  margin-top: 50px;
+  color: grey;
+  font-size: 2em;
+}
+
+.xAndO:hover {
+  color: white;
 }
 
 #player-data {

@@ -20,21 +20,33 @@ function playerSelectHandler() {
   for (let i = 0; i < playerChoice.length; i++) {
     playerChoice[i].addEventListener("click", function () {
       const playerSelect = document.getElementById("player-select");
+      const gamePieceSelect = document.getElementById("game-piece-select");
+
+      playerSelect.setAttribute("style", "animation: fadeOut .5s linear forwards");
+      gamePieceSelect.setAttribute("style", "animation: fadeIn 1s linear forwards");
+
+      numberOfPlayers = playerChoice[i].id;
+      gamePieceSelectionHandler();
+    });
+  }
+}
+
+function gamePieceSelectionHandler() {
+  const xAndO = document.getElementsByClassName("xAndO");
+
+  for (let i = 0; i < xAndO.length; i++) {
+    xAndO[i].addEventListener("click", function () {
+      const gamePieceSelect = document.getElementById("game-piece-select");
       const gameBoard = document.getElementById("game-board");
       const playerData = document.getElementById("player-data");
       const reset = document.getElementById("reset-container");
 
-      playerSelect.setAttribute("style", "animation: fadeOut .5s linear forwards");
+      gamePieceSelect.setAttribute("style", "animation: fadeOut .5s linear forwards");
       gameBoard.setAttribute("style", "animation: fadeIn 1s linear forwards");
       playerData.setAttribute("style", "animation: fadeIn 1s linear forwards");
       reset.setAttribute("style", "animation: fadeIn 1s linear forwards");
 
-      numberOfPlayers = playerChoice[i].id;
+      xOrO = xAndO[i].id;
     });
   }
-  gamePieceSelectionHandler();
-}
-
-function gamePieceSelectionHandler() {
-
 }
