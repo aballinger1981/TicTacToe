@@ -129,6 +129,10 @@ body, html {
   color: white;
 }
 
+#reset-button:hover {
+  color: grey;
+}
+
 #game-board {
   padding-top: 30px;
   padding-bottom: 30px;

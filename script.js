@@ -23,7 +23,12 @@ function playerSelectHandler() {
       const gamePieceSelect = document.getElementById("game-piece-select");
 
       playerSelect.setAttribute("style", "animation: fadeOut .5s linear forwards");
-      gamePieceSelect.setAttribute("style", "animation: fadeIn 1s linear forwards");
+
+      setTimeout(() => {
+        playerSelect.setAttribute("style", "display: none");
+      }, 1000);
+
+      gamePieceSelect.setAttribute("style", "animation: fadeIn 1s 1s linear forwards");
 
       numberOfPlayers = playerChoice[i].id;
       gamePieceSelectionHandler();
@@ -42,11 +47,24 @@ function gamePieceSelectionHandler() {
       const reset = document.getElementById("reset-container");
 
       gamePieceSelect.setAttribute("style", "animation: fadeOut .5s linear forwards");
-      gameBoard.setAttribute("style", "animation: fadeIn 1s linear forwards");
-      playerData.setAttribute("style", "animation: fadeIn 1s linear forwards");
-      reset.setAttribute("style", "animation: fadeIn 1s linear forwards");
+
+      setTimeout(() => {
+        gamePieceSelect.setAttribute("style", "display: none");
+      });
+
+      gameBoard.setAttribute("style", "animation: fadeIn 1s 1s linear forwards");
+      playerData.setAttribute("style", "animation: fadeIn 1s 1s linear forwards");
+      reset.setAttribute("style", "animation: fadeIn 1s 1s linear forwards");
 
       xOrO = xAndO[i].id;
+      setPlayerTwoName();
     });
   }
+}
+
+function setPlayerTwoName() {
+  if (numberOfPlayers === "two-players") { return; }
+
+  const playerTwo = document.getElementById("player-two");
+  playerTwo.innerHTML = 'Computer: <span class="score"> 0</span>';
 }
