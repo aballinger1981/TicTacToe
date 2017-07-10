@@ -15,20 +15,20 @@ function ready() {
 }
 
 function playerSelectHandler() {
-  const playerChoice = document.getElementsByClassName("player-choice");
+  const playerChoice = document.getElementsByClassName('player-choice');
 
   for (let i = 0; i < playerChoice.length; i++) {
-    playerChoice[i].addEventListener("click", function () {
-      const playerSelect = document.getElementById("player-select");
-      const gamePieceSelect = document.getElementById("game-piece-select");
+    playerChoice[i].addEventListener('click', function () {
+      const playerSelect = document.getElementById('player-select');
+      const gamePieceSelect = document.getElementById('game-piece-select');
 
-      playerSelect.setAttribute("style", "animation: fadeOut .5s linear forwards");
+      playerSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
 
       setTimeout(() => {
-        playerSelect.setAttribute("style", "display: none");
+        playerSelect.setAttribute('style', 'display: none');
       }, 1000);
 
-      gamePieceSelect.setAttribute("style", "animation: fadeIn 1s 1s linear forwards");
+      gamePieceSelect.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
 
       numberOfPlayers = playerChoice[i].id;
       gamePieceSelectionHandler();
@@ -37,24 +37,24 @@ function playerSelectHandler() {
 }
 
 function gamePieceSelectionHandler() {
-  const xAndO = document.getElementsByClassName("xAndO");
+  const xAndO = document.getElementsByClassName('xAndO');
 
   for (let i = 0; i < xAndO.length; i++) {
-    xAndO[i].addEventListener("click", function () {
-      const gamePieceSelect = document.getElementById("game-piece-select");
-      const gameBoard = document.getElementById("game-board");
-      const playerData = document.getElementById("player-data");
-      const reset = document.getElementById("reset-container");
+    xAndO[i].addEventListener('click', function () {
+      const gamePieceSelect = document.getElementById('game-piece-select');
+      const gameBoard = document.getElementById('game-board');
+      const playerData = document.getElementById('player-data');
+      const reset = document.getElementById('reset-container');
 
-      gamePieceSelect.setAttribute("style", "animation: fadeOut .5s linear forwards");
+      gamePieceSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
 
       setTimeout(() => {
-        gamePieceSelect.setAttribute("style", "display: none");
-      });
+        gamePieceSelect.setAttribute('style', 'display: none');
+      }, 1000);
 
-      gameBoard.setAttribute("style", "animation: fadeIn 1s 1s linear forwards");
-      playerData.setAttribute("style", "animation: fadeIn 1s 1s linear forwards");
-      reset.setAttribute("style", "animation: fadeIn 1s 1s linear forwards");
+      gameBoard.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
+      playerData.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
+      reset.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
 
       xOrO = xAndO[i].id;
       setPlayerTwoName();
@@ -64,9 +64,9 @@ function gamePieceSelectionHandler() {
 }
 
 function setPlayerTwoName() {
-  if (numberOfPlayers === "two-players") { return; }
+  if (numberOfPlayers === 'two-players') { return; }
 
-  const playerTwo = document.getElementById("player-two");
+  const playerTwo = document.getElementById('player-two');
   playerTwo.innerHTML = 'Computer: <span class="score"> 0</span>';
 }
 
@@ -75,7 +75,7 @@ function getRandomNumber() {
 }
 
 function initialComputerTurn() {
-  if (numberOfPlayers === "two-players") { return; }
+  if (numberOfPlayers === 'two-players') { return; }
 
   const randomNumber = getRandomNumber();
   const square = document.getElementById(randomNumber);
@@ -91,24 +91,17 @@ function initialComputerTurn() {
 }
 
 function playerOneTurn() {
-  const gameSquares = document.getElementsByClassName("game-square");
+  const gameSquares = document.getElementsByClassName('square-content');
+  document.addEventListener('click', function handler(event) {
+    if (!event) { event = window.event; }
 
-  for (let i = 0; i < gameSquares.length; i++) {
-    gameSquares[i].addEventListener("click", selectedSquareHandler(gameSquares, gameSquares[i]));
-  }
-}
-
-function selectedSquareHandler(gameSquares, square) {
-  const squareSpan = square.getElementsByClassName("square-content");
-  console.log(squareSpan);
-  squareSpan.onclick = function () {
-    if (xOrO === 'x') {
-      squareSpan.innerHTML = 'X';
-    } else {
-      squareSpan.innerHTML = 'O';
+    if (event.target.classList.contains('square-content')) {
+      if (xOrO === 'x') {
+        event.target.innerHTML = 'X';
+      } else {
+        event.target.innerHTML = 'O';
+      }
+      document.removeEventListener('click', handler);
     }
-    for (let i = 0; i < gameSquares.length; i++) {
-      gameSquares[i].removeEventListener("click", selectedSquareHandler);
-    }
-  }
+  });
 }
