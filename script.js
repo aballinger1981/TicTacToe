@@ -86,16 +86,17 @@ function initialComputerTurn() {
     } else {
       square.innerHTML = 'X';
     }
-    playerOneTurn();
+    playerOneTurn(randomNumber);
   }, 3000);
 }
 
-function playerOneTurn() {
+function playerOneTurn(computerSelection) {
   const gameSquares = document.getElementsByClassName('square-content');
   document.addEventListener('click', function handler(event) {
     if (!event) { event = window.event; }
 
-    if (event.target.classList.contains('square-content')) {
+    if (event.target.classList.contains('square-content')
+      && event.target.id !== computerSelection.toString()) {
       if (xOrO === 'x') {
         event.target.innerHTML = 'X';
       } else {
