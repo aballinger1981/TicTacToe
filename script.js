@@ -10,6 +10,7 @@ if (document.readyState !== 'loading') {
 let numberOfPlayers;
 let xOrO;
 let gameMap = new Map();
+let whoWon= {};
 
 function ready() {
   playerSelectHandler();
@@ -90,7 +91,9 @@ function getLetterForComputer() {
 
 function computerTurn() {
   let square = checkGameBoard('computer');
-  if (!square) { square = checkGameBoard('playerOne'); }
+  if (!square) {
+    square = checkGameBoard('playerOne');
+  }
 
   if (!square) {
     let randomNumber = getRandomNumber();
@@ -139,132 +142,180 @@ function checkGameBoard(turn) {
 
   if (gameMap.get('1') === letter) {
     if (gameMap.get('2') === letter && document.getElementById('3').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstRow' };
       return document.getElementById('3');
     } else if (gameMap.get('3') === letter && document.getElementById('2').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstRow' };
       return document.getElementById('2');
     } else if (gameMap.get('4') === letter && document.getElementById('7').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstColumn' };
       return document.getElementById('7');
     } else if (gameMap.get('5') === letter && document.getElementById('9').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalOneToNine' };
       return document.getElementById('9');
     } else if (gameMap.get('7') === letter && document.getElementById('4').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstColumn' };
       return document.getElementById('4');
     } else if (gameMap.get('9') === letter && document.getElementById('5').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalOneToNine' };
       return document.getElementById('5');
     }
   }
 
   if (gameMap.get('2') === letter) {
     if (gameMap.get('1') === letter && document.getElementById('3').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstRow' };
       return document.getElementById('3');
     } else if (gameMap.get('3') === letter && document.getElementById('1').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstRow' };
       return document.getElementById('1');
     } else if (gameMap.get('5') === letter && document.getElementById('8').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondColumn' };
       return document.getElementById('8');
     } else if (gameMap.get('8') === letter && document.getElementById('5').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondColumn' };
       return document.getElementById('5');
     }
   }
 
   if (gameMap.get('3') === letter) {
     if (gameMap.get('2') === letter && document.getElementById('1').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstRow' };
       return document.getElementById('1');
     } else if (gameMap.get('1') === letter && document.getElementById('2').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstRow' };
       return document.getElementById('2');
     } else if (gameMap.get('5') === letter && document.getElementById('7').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalThreeToSeven' };
       return document.getElementById('7');
     } else if (gameMap.get('7') === letter && document.getElementById('5').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalThreeToSeven' };
       return document.getElementById('5');
     } else if (gameMap.get('6') === letter && document.getElementById('9').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdColumn' };
       return document.getElementById('9');
     } else if (gameMap.get('9') === letter && document.getElementById('6').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdColumn' };
       return document.getElementById('6');
     }
   }
 
   if (gameMap.get('4') === letter) {
     if (gameMap.get('1') === letter && document.getElementById('7').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstColumn' };
       return document.getElementById('7');
     } else if (gameMap.get('7') === letter && document.getElementById('1').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstColumn' };
       return document.getElementById('1');
     } else if (gameMap.get('5') === letter && document.getElementById('6').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondRow' };
       return document.getElementById('6');
     } else if (gameMap.get('6') === letter && document.getElementById('5').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondRow' };
       return document.getElementById('5');
     }
   }
 
   if (gameMap.get('5') === letter) {
     if (gameMap.get('1') === letter && document.getElementById('9').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalOneToNine' };
       return document.getElementById('9');
     } else if (gameMap.get('9') === letter && document.getElementById('1').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalOneToNine' };
       return document.getElementById('1');
     } else if (gameMap.get('2') === letter && document.getElementById('8').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondColumn' };
       return document.getElementById('8');
     } else if (gameMap.get('8') === letter && document.getElementById('2').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondColumn' };
       return document.getElementById('2');
     } else if (gameMap.get('3') === letter && document.getElementById('7').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalThreeToSeven' };
       return document.getElementById('7');
     } else if (gameMap.get('7') === letter && document.getElementById('3').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalThreeToSeven' };
       return document.getElementById('3');
     } else if (gameMap.get('4') === letter && document.getElementById('6').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondRow' };
       return document.getElementById('6');
     } else if (gameMap.get('6') === letter && document.getElementById('4').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondRow' };
       return document.getElementById('4');
     }
   }
 
   if (gameMap.get('6') === letter) {
     if (gameMap.get('3') === letter && document.getElementById('9').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdColumn' };
       return document.getElementById('9');
     } else if (gameMap.get('9') === letter && document.getElementById('3').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdColumn' };
       return document.getElementById('3');
     } else if (gameMap.get('4') === letter && document.getElementById('5').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdRow' };
       return document.getElementById('5');
     } else if (gameMap.get('5') === letter && document.getElementById('4').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdRow' };
       return document.getElementById('4');
     }
   }
 
   if (gameMap.get('7') === letter) {
     if (gameMap.get('1') === letter && document.getElementById('4').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstColumn' };
       return document.getElementById('4');
     } else if (gameMap.get('4') === letter && document.getElementById('1').innerHTML === '') {
+      whoWon = { name: turn, position: 'firstColumn' };
       return document.getElementById('1');
     } else if (gameMap.get('5') === letter && document.getElementById('3').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalThreeToSeven' };
       return document.getElementById('3');
     } else if (gameMap.get('3') === letter && document.getElementById('5').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalThreeToSeven' };
       return document.getElementById('5');
     } else if (gameMap.get('8') === letter && document.getElementById('9').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdRow' };
       return document.getElementById('9');
     } else if (gameMap.get('9') === letter && document.getElementById('8').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdRow' };
       return document.getElementById('8');
     }
   }
 
   if (gameMap.get('8') === letter) {
     if (gameMap.get('2') === letter && document.getElementById('5').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondColumn' };
       return document.getElementById('5');
     } else if (gameMap.get('5') === letter && document.getElementById('2').innerHTML === '') {
+      whoWon = { name: turn, position: 'secondColumn' };
       return document.getElementById('2');
     } else if (gameMap.get('7') === letter && document.getElementById('9').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdRow' };
       return document.getElementById('9');
     } else if (gameMap.get('9') === letter && document.getElementById('7').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdRow' };
       return document.getElementById('7');
     }
   }
 
   if (gameMap.get('9') === letter) {
     if (gameMap.get('1') === letter && document.getElementById('5').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalOneToNine' };
       return document.getElementById('5');
     } else if (gameMap.get('5') === letter && document.getElementById('1').innerHTML === '') {
+      whoWon = { name: turn, position: 'diagonalOneToNine' };
       return document.getElementById('1');
     } else if (gameMap.get('3') === letter && document.getElementById('6').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdColumn' };
       return document.getElementById('6');
     } else if (gameMap.get('6') === letter && document.getElementById('3').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdColumn' };
       return document.getElementById('3');
     } else if (gameMap.get('7') === letter && document.getElementById('8').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdRow' };
       return document.getElementById('8');
     } else if (gameMap.get('8') === letter && document.getElementById('7').innerHTML === '') {
+      whoWon = { name: turn, position: 'thirdRow' };
       return document.getElementById('7');
     }
   }
