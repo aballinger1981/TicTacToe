@@ -90,10 +90,15 @@ function getLetterForComputer() {
 
 function computerTurn() {
   let square = checkGameBoard();
+  console.log(square);
   if (!square) {
-    const randomNumber = getRandomNumber();
+    let randomNumber = getRandomNumber();
+    let randomNumberToString = randomNumber.toString();
+    while (gameMap.has(randomNumberToString)) {
+      randomNumber = getRandomNumber();
+      randomNumberToString = randomNumber.toString();
+    }
     square = document.getElementById(randomNumber);
-    if (gameMap.has(randomNumber)) { computerTurn(); }
   }
 
   setTimeout(() => {
@@ -131,129 +136,133 @@ function checkGameBoard() {
   }
 
   if (gameMap.get('1') === opponentLetter) {
-    if (gameMap.get('2') === opponentLetter) {
+    if (gameMap.get('2') === opponentLetter && document.getElementById('3').innerHTML === '') {
       return document.getElementById('3');
-    } else if (gameMap.get('3') === opponentLetter) {
+    } else if (gameMap.get('3') === opponentLetter && document.getElementById('2').innerHTML === '') {
       return document.getElementById('2');
-    } else if (gameMap.get('4') === opponentLetter) {
+    } else if (gameMap.get('4') === opponentLetter && document.getElementById('7').innerHTML === '') {
       return document.getElementById('7');
-    } else if (gameMap.get('5') === opponentLetter) {
+    } else if (gameMap.get('5') === opponentLetter && document.getElementById('9').innerHTML === '') {
       return document.getElementById('9');
-    } else if (gameMap.get('7') === opponentLetter) {
+    } else if (gameMap.get('7') === opponentLetter && document.getElementById('4').innerHTML === '') {
       return document.getElementById('4');
-    } else if (gameMap.get('9') === opponentLetter) {
+    } else if (gameMap.get('9') === opponentLetter && document.getElementById('5').innerHTML === '') {
       return document.getElementById('5');
     }
   }
 
   if (gameMap.get('2') === opponentLetter) {
-    if (gameMap.get('1') === opponentLetter) {
+    if (gameMap.get('1') === opponentLetter && document.getElementById('3').innerHTML === '') {
       return document.getElementById('3');
-    } else if (gameMap.get('3') === opponentLetter) {
+    } else if (gameMap.get('3') === opponentLetter && document.getElementById('1').innerHTML === '') {
       return document.getElementById('1');
-    } else if (gameMap.get('5') === opponentLetter) {
+    } else if (gameMap.get('5') === opponentLetter && document.getElementById('8').innerHTML === '') {
       return document.getElementById('8');
-    } else if (gameMap.get('8') === opponentLetter) {
+    } else if (gameMap.get('8') === opponentLetter && document.getElementById('5').innerHTML === '') {
       return document.getElementById('5');
     }
   }
 
   if (gameMap.get('3') === opponentLetter) {
-    if (gameMap.get('2') === opponentLetter) {
+    if (gameMap.get('2') === opponentLetter && document.getElementById('1').innerHTML === '') {
       return document.getElementById('1');
-    } else if (gameMap.get('1') === opponentLetter) {
+    } else if (gameMap.get('1') === opponentLetter && document.getElementById('2').innerHTML === '') {
       return document.getElementById('2');
-    } else if (gameMap.get('5') === opponentLetter) {
+    } else if (gameMap.get('5') === opponentLetter && document.getElementById('7').innerHTML === '') {
       return document.getElementById('7');
-    } else if (gameMap.get('7') === opponentLetter) {
+    } else if (gameMap.get('7') === opponentLetter && document.getElementById('5').innerHTML === '') {
       return document.getElementById('5');
-    } else if (gameMap.get('6') === opponentLetter) {
+    } else if (gameMap.get('6') === opponentLetter && document.getElementById('9').innerHTML === '') {
       return document.getElementById('9');
-    } else if (gameMap.get('9') === opponentLetter) {
+    } else if (gameMap.get('9') === opponentLetter && document.getElementById('6').innerHTML === '') {
       return document.getElementById('6');
     }
   }
 
   if (gameMap.get('4') === opponentLetter) {
-    if (gameMap.get('1') === opponentLetter) {
+    if (gameMap.get('1') === opponentLetter && document.getElementById('7').innerHTML === '') {
       return document.getElementById('7');
-    } else if (gameMap.get('7') === opponentLetter) {
+    } else if (gameMap.get('7') === opponentLetter && document.getElementById('1').innerHTML === '') {
       return document.getElementById('1');
-    } else if (gameMap.get('5') === opponentLetter) {
+    } else if (gameMap.get('5') === opponentLetter && document.getElementById('6').innerHTML === '') {
       return document.getElementById('6');
-    } else if (gameMap.get('6') === opponentLetter) {
+    } else if (gameMap.get('6') === opponentLetter && document.getElementById('5').innerHTML === '') {
       return document.getElementById('5');
     }
   }
 
   if (gameMap.get('5') === opponentLetter) {
-    if (gameMap.get('1') === opponentLetter) {
+    if (gameMap.get('1') === opponentLetter && document.getElementById('9').innerHTML === '') {
       return document.getElementById('9');
-    } else if (gameMap.get('9') === opponentLetter) {
+    } else if (gameMap.get('9') === opponentLetter && document.getElementById('1').innerHTML === '') {
       return document.getElementById('1');
-    } else if (gameMap.get('2') === opponentLetter) {
+    } else if (gameMap.get('2') === opponentLetter && document.getElementById('8').innerHTML === '') {
       return document.getElementById('8');
-    } else if (gameMap.get('8') === opponentLetter) {
+    } else if (gameMap.get('8') === opponentLetter && document.getElementById('2').innerHTML === '') {
       return document.getElementById('2');
-    } else if (gameMap.get('3') === opponentLetter) {
+    } else if (gameMap.get('3') === opponentLetter && document.getElementById('7').innerHTML === '') {
       return document.getElementById('7');
-    } else if (gameMap.get('7') === opponentLetter) {
+    } else if (gameMap.get('7') === opponentLetter && document.getElementById('3').innerHTML === '') {
       return document.getElementById('3');
+    } else if (gameMap.get('4') === opponentLetter && document.getElementById('6').innerHTML === '') {
+      return document.getElementById('6');
+    } else if (gameMap.get('6') === opponentLetter && document.getElementById('4').innerHTML === '') {
+      return document.getElementById('4');
     }
   }
 
   if (gameMap.get('6') === opponentLetter) {
-    if (gameMap.get('3') === opponentLetter) {
+    if (gameMap.get('3') === opponentLetter && document.getElementById('9').innerHTML === '') {
       return document.getElementById('9');
-    } else if (gameMap.get('9') === opponentLetter) {
+    } else if (gameMap.get('9') === opponentLetter && document.getElementById('3').innerHTML === '') {
       return document.getElementById('3');
-    } else if (gameMap.get('4') === opponentLetter) {
+    } else if (gameMap.get('4') === opponentLetter && document.getElementById('5').innerHTML === '') {
       return document.getElementById('5');
-    } else if (gameMap.get('5') === opponentLetter) {
+    } else if (gameMap.get('5') === opponentLetter && document.getElementById('4').innerHTML === '') {
       return document.getElementById('4');
     }
   }
 
   if (gameMap.get('7') === opponentLetter) {
-    if (gameMap.get('1') === opponentLetter) {
+    if (gameMap.get('1') === opponentLetter && document.getElementById('4').innerHTML === '') {
       return document.getElementById('4');
-    } else if (gameMap.get('4') === opponentLetter) {
+    } else if (gameMap.get('4') === opponentLetter && document.getElementById('1').innerHTML === '') {
       return document.getElementById('1');
-    } else if (gameMap.get('5') === opponentLetter) {
+    } else if (gameMap.get('5') === opponentLetter && document.getElementById('3').innerHTML === '') {
       return document.getElementById('3');
-    } else if (gameMap.get('3') === opponentLetter) {
+    } else if (gameMap.get('3') === opponentLetter && document.getElementById('5').innerHTML === '') {
       return document.getElementById('5');
-    } else if (gameMap.get('8') === opponentLetter) {
+    } else if (gameMap.get('8') === opponentLetter && document.getElementById('9').innerHTML === '') {
       return document.getElementById('9');
-    } else if (gameMap.get('9') === opponentLetter) {
+    } else if (gameMap.get('9') === opponentLetter && document.getElementById('8').innerHTML === '') {
       return document.getElementById('8');
     }
   }
 
   if (gameMap.get('8') === opponentLetter) {
-    if (gameMap.get('2') === opponentLetter) {
+    if (gameMap.get('2') === opponentLetter && document.getElementById('5').innerHTML === '') {
       return document.getElementById('5');
-    } else if (gameMap.get('5') === opponentLetter) {
+    } else if (gameMap.get('5') === opponentLetter && document.getElementById('2').innerHTML === '') {
       return document.getElementById('2');
-    } else if (gameMap.get('7') === opponentLetter) {
+    } else if (gameMap.get('7') === opponentLetter && document.getElementById('9').innerHTML === '') {
       return document.getElementById('9');
-    } else if (gameMap.get('9') === opponentLetter) {
+    } else if (gameMap.get('9') === opponentLetter && document.getElementById('7').innerHTML === '') {
       return document.getElementById('7');
     }
   }
 
   if (gameMap.get('9') === opponentLetter) {
-    if (gameMap.get('1') === opponentLetter) {
+    if (gameMap.get('1') === opponentLetter && document.getElementById('5').innerHTML === '') {
       return document.getElementById('5');
-    } else if (gameMap.get('5') === opponentLetter) {
+    } else if (gameMap.get('5') === opponentLetter && document.getElementById('1').innerHTML === '') {
       return document.getElementById('1');
-    } else if (gameMap.get('3') === opponentLetter) {
+    } else if (gameMap.get('3') === opponentLetter && document.getElementById('6').innerHTML === '') {
       return document.getElementById('6');
-    } else if (gameMap.get('6') === opponentLetter) {
+    } else if (gameMap.get('6') === opponentLetter && document.getElementById('3').innerHTML === '') {
       return document.getElementById('3');
-    } else if (gameMap.get('7') === opponentLetter) {
+    } else if (gameMap.get('7') === opponentLetter && document.getElementById('8').innerHTML === '') {
       return document.getElementById('8');
-    } else if (gameMap.get('8') === opponentLetter) {
+    } else if (gameMap.get('8') === opponentLetter && document.getElementById('7').innerHTML === '') {
       return document.getElementById('7');
     }
   }
