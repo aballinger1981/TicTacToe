@@ -86,7 +86,7 @@ function gamePieceSelectionHandler() {
 function setPlayerTwoName() {
   if (numberOfPlayers === 'two-players') { return; }
   const playerTwo = document.getElementById('player-two');
-  playerTwo.innerHTML = 'Computer: <span class="score"> 0</span>';
+  playerTwo.innerHTML = 'Computer: <span id="player-two-score" class="score"> 0</span>';
 }
 
 function getRandomNumber() {
@@ -130,7 +130,7 @@ function computerTurn() {
       const playerTwoScore = document.getElementById('player-two-score');
       playerTwoScore.innerHTML = playerTwoOrComputerWins;
     }
-  }, 3000);
+  }, 2000);
 }
 
 function playerOneTurn() {
