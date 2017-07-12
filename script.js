@@ -16,6 +16,24 @@ let playerTwoOrComputerWins = 0;
 
 function ready() {
   playerSelectHandler();
+
+  const resetClick = document.getElementById('reset-container');
+  resetClick.addEventListener('click', function () {
+    resetBoard();
+  });
+}
+
+function resetBoard() {
+  const gameSquares = document.getElementsByClassName('square-content');
+  const scores = document.getElementsByClassName('score');
+
+  Array.prototype.forEach.call(gameSquares, square => {
+    square.innerHTML = '';
+  });
+  Array.prototype.forEach.call(scores, score => {
+    score.innerHTML = '0';
+  });
+  gameMap.clear();
 }
 
 function playerSelectHandler() {
@@ -105,7 +123,13 @@ function computerTurn() {
     square.innerHTML = getLetterForComputerOrPlayerTwo();
     gameMap.set(square.id, square.innerHTML);
     const computerWon = checkForWinner('computer');
-    if (!computerWon) { playerOneTurn(); }
+    if (!computerWon) {
+      playerOneTurn();
+    } else {
+      playerTwoOrComputerWins++;
+      const playerTwoScore = document.getElementById('player-two-score');
+      playerTwoScore.innerHTML = playerTwoOrComputerWins;
+    }
   }, 3000);
 }
 
@@ -127,6 +151,10 @@ function playerOneTurn() {
         computerTurn();
       } else if (!playerOneWon && numberOfPlayers === 'two-players') {
         playerTwoTurn();
+      } else {
+        playerOneWins++;
+        const playerOneScore = document.getElementById('player-one-score');
+        playerOneScore.innerHTML = playerOneWins;
       }
     }
   });
@@ -148,6 +176,10 @@ function playerTwoTurn() {
       const playerTwoWon = checkForWinner('playerTwo');
       if (!playerTwoWon) {
         playerOneTurn();
+      } else {
+        playerTwoOrComputerWins++;
+        const playerTwoScore = document.getElementById('player-two-score');
+        playerTwoScore.innerHTML = playerTwoOrComputerWins;
       }
     }
   });
