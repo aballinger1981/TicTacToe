@@ -11,6 +11,8 @@ let numberOfPlayers;
 let xOrO;
 let gameMap = new Map();
 let whoWon = {};
+let playerOneWins = 0;
+let playerTwoOrComputerWins = 0;
 
 function ready() {
   playerSelectHandler();
@@ -56,6 +58,8 @@ function gamePieceSelectionHandler() {
       setPlayerTwoName();
       if (numberOfPlayers === 'one-player') {
         computerTurn();
+      } else {
+        playerOneTurn();
       }
     });
   }
@@ -71,7 +75,7 @@ function getRandomNumber() {
   return Math.floor(Math.random() * (9 - 1 + 1)) + 1;
 }
 
-function getLetterForComputer() {
+function getLetterForComputerOrPlayerTwo() {
   let letter;
   if (xOrO === 'x') {
     letter = 'O';
@@ -98,7 +102,7 @@ function computerTurn() {
   }
 
   setTimeout(() => {
-    square.innerHTML = getLetterForComputer();
+    square.innerHTML = getLetterForComputerOrPlayerTwo();
     gameMap.set(square.id, square.innerHTML);
     const computerWon = checkForWinner('computer');
     if (!computerWon) { playerOneTurn(); }
@@ -119,13 +123,38 @@ function playerOneTurn() {
       document.removeEventListener('click', handler);
       gameMap.set(event.target.id, event.target.innerHTML);
       const playerOneWon = checkForWinner('playerOne');
-      if (!playerOneWon) { computerTurn(); }
+      if (!playerOneWon && numberOfPlayers === 'one-player') {
+        computerTurn();
+      } else if (!playerOneWon && numberOfPlayers === 'two-players') {
+        playerTwoTurn();
+      }
+    }
+  });
+}
+
+function playerTwoTurn() {
+  document.addEventListener('click', function handler(event) {
+    if (!event) { event = window.event; }
+
+    if (event.target.classList.contains('square-content')
+      && event.target.innerHTML == '') {
+      if (xOrO === 'x') {
+        event.target.innerHTML = 'O';
+      } else {
+        event.target.innerHTML = 'X';
+      }
+      document.removeEventListener('click', handler);
+      gameMap.set(event.target.id, event.target.innerHTML);
+      const playerTwoWon = checkForWinner('playerTwo');
+      if (!playerTwoWon) {
+        playerOneTurn();
+      }
     }
   });
 }
 
 function checkGameBoard(checkingOpponent) {
-  let letter = getLetterForComputer();
+  let letter = getLetterForComputerOrPlayerTwo();
   if (checkingOpponent === true) {
     if (letter === 'X') {
       letter = 'O';
@@ -150,8 +179,8 @@ function findNextSquare(letter) {
 }
 
 function checkForWinner(player) {
-  let letter = getLetterForComputer();
-  if (player === 'playerOne' || player === 'playerTwo') {
+  let letter = getLetterForComputerOrPlayerTwo();
+  if (player === 'playerOne') {
     if (letter === 'X') {
       letter = 'O';
     } else {
@@ -162,7 +191,7 @@ function checkForWinner(player) {
 }
 
 function findWinner(player, letter) {
-    for (let i = 0; i < combinations.length; i++) {
+  for (let i = 0; i < combinations.length; i++) {
     if (gameMap.get(combinations[i].id1) === letter
       && gameMap.get(combinations[i].id2) === letter
       && gameMap.get(combinations[i].id3) === letter) {
