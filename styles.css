@@ -68,6 +68,19 @@ body, html {
   }
 }
 
+@keyframes fadeInPlayAgain {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: .5;
+  }
+  100% {
+    opacity: .9;
+    visibility: visible;
+  }
+}
+
 #or {
   font-family: 'Love Ya Like A Sister', cursive;
   font-size: .5em;
@@ -180,3 +193,35 @@ body, html {
   border-right: 4px solid white;
 }
 
+#play-again {
+  font-family: 'Love Ya Like A Sister', cursive;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  display: flex;
+  color: white;
+  height: 960px;
+  width: 866.5px;
+  background-color: black;
+  opacity: .9;
+  visibility: hidden;
+}
+
+#play-again-question {
+  font-size: 6em;
+  margin-bottom: 25px;
+}
+
+#play-again-yes {
+  margin-right: 75px;
+}
+
+#play-again-yes, #play-again-no {
+  font-size: 4em;
+}
+
+#play-again-yes:hover, #play-again-no:hover {
+  cursor: pointer;
+  color: grey;
+}

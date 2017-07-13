@@ -46,6 +46,22 @@ function resetBoard() {
   }
 }
 
+function playAgainHandler() {
+  const playAgainElement = document.getElementById('play-again');
+
+  playAgainElement.setAttribute('style', 'animation: fadeInPlayAgain 1s 1s linear forwards');
+
+  const playAgainYes = document.getElementById('play-again-yes');
+  const playAgainNo = document.getElementById('play-again-no');
+
+  playAgainYes.addEventListener('click', function playAgainClickHandler() {
+
+  });
+  playAgainNo.addEventListener('click', function playAgainNoClickHandler() {
+
+  });
+}
+
 function playerSelectHandler() {
   const playerChoice = document.getElementsByClassName('player-choice');
   for (let i = 0; i < playerChoice.length; i++) {
@@ -139,6 +155,7 @@ function computerTurn() {
       playerTwoOrComputerWins++;
       const playerTwoScore = document.getElementById('player-two-score');
       playerTwoScore.innerHTML = playerTwoOrComputerWins;
+      playAgainHandler();
     }
   }, 2000);
 }
@@ -168,6 +185,7 @@ function playerOneClickHandler(event) {
         playerOneWins++;
         const playerOneScore = document.getElementById('player-one-score');
         playerOneScore.innerHTML = playerOneWins;
+        playAgainHandler();
       }
     }
 }
@@ -195,6 +213,7 @@ function playerTwoClickHandler(event) {
         playerTwoOrComputerWins++;
         const playerTwoScore = document.getElementById('player-two-score');
         playerTwoScore.innerHTML = playerTwoOrComputerWins;
+        playAgainHandler();
       }
     }
 }
