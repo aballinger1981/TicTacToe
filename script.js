@@ -15,7 +15,7 @@ let playerOneWins = 0;
 let playerTwoOrComputerWins = 0;
 
 function ready() {
-  playerSelectHandler();
+  playerSelect();
 
   const resetClick = document.getElementById('reset-container');
   resetClick.addEventListener('click', function () {
@@ -90,10 +90,10 @@ function playAgainNoClickHandler(event) {
   document.removeEventListener('click', playAgainNoClickHandler);
   resetBoard();
   playerSelectELement.setAttribute('style', 'animation: fadeIn 1s linear forwards');
-  playerSelectHandler();
+  playerSelect();
 }
 
-function playerSelectHandler() {
+function playerSelect() {
   document.addEventListener('click', playerSelectClickHandler);
 }
 
@@ -116,11 +116,11 @@ function playerSelectClickHandler(event) {
       numberOfPlayers = 'two-players';
     }
     document.removeEventListener('click', playerSelectClickHandler);
-    gamePieceSelectionHandler();
+    gamePieceSelection();
   }
 }
 
-function gamePieceSelectionHandler() {
+function gamePieceSelection() {
   document.addEventListener('click', gamePieceClickHandler);
 }
 
@@ -157,9 +157,12 @@ function gamePieceClickHandler(event) {
 }
 
 function setPlayerTwoName() {
-  if (numberOfPlayers === 'two-players') { return; }
   const playerTwo = document.getElementById('player-two');
-  playerTwo.innerHTML = 'Computer: <span id="player-two-score" class="score"> 0</span>';
+  if (numberOfPlayers === 'two-players') {
+    playerTwo.innerHTML = 'Player 2: <span id="player-two-score" class="score"> 0</span>';
+  } else {
+    playerTwo.innerHTML = 'Computer: <span id="player-two-score" class="score"> 0</span>';
+  }
 }
 
 function getRandomNumber() {
