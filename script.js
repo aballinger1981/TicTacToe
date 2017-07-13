@@ -41,7 +41,7 @@ function resetBoard() {
   document.removeEventListener('click', playerTwoClickHandler);
   if (numberOfPlayers === 'one-player') {
     computerTurn();
-  } else {
+  } else if (numberOfPlayers === 'two-players') {
     playerOneTurn();
   }
 }
@@ -76,7 +76,20 @@ function playAgainYesClickHandler(event) {
 }
 
 function playAgainNoClickHandler(event) {
-
+  const gameBoardElement = document.getElementById('game-board');
+  const playerDataElement = document.getElementById('player-data');
+  const resetElement = document.getElementById('reset-container');
+  const playAgainElement = document.getElementById('play-again');
+  const playerSelectELement = document.getElementById('player-select');
+  gameBoardElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
+  playerDataElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
+  resetElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
+  playAgainElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
+  numberOfPlayers = '';
+  resetBoard();
+  playerSelectELement.setAttribute('style', 'animation: fadeIn 1s linear forwards');
+  document.removeEventListener('click', playAgainNoClickHandler);
+  playerSelectHandler();
 }
 
 function playerSelectHandler() {
