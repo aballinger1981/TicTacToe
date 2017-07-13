@@ -81,6 +81,10 @@ body, html {
   }
 }
 
+.underline {
+  border-bottom: 3px solid white;
+}
+
 #or {
   font-family: 'Love Ya Like A Sister', cursive;
   font-size: .5em;

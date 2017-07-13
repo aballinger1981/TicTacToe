@@ -67,7 +67,7 @@ function playAgainYesClickHandler(event) {
     square.innerHTML = '';
   });
   playAgainElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
-
+  document.removeEventListener('click', playAgainYesClickHandler);
   if (numberOfPlayers === 'one-player') {
     computerTurn();
   } else {
@@ -159,9 +159,9 @@ function gamePieceClickHandler(event) {
 function setPlayerTwoName() {
   const playerTwo = document.getElementById('player-two');
   if (numberOfPlayers === 'two-players') {
-    playerTwo.innerHTML = 'Player 2: <span id="player-two-score" class="score"> 0</span>';
+    playerTwo.innerHTML = '<span id="player-two-text">Player 2</span><span>: </span><span id="player-two-score" class="score"> 0</span>';
   } else {
-    playerTwo.innerHTML = 'Computer: <span id="player-two-score" class="score"> 0</span>';
+    playerTwo.innerHTML = '<span id="player-two-text">Computer</span><span>: </span><span id="player-two-score" class="score"> 0</span>';
   }
 }
 
@@ -180,8 +180,10 @@ function getLetterForComputerOrPlayerTwo() {
 }
 
 function computerTurn() {
-  document.removeEventListener('click', playAgainYesClickHandler);
-
+  const playerOneElement = document.getElementById('player-one-text');
+  const playerTwoElement = document.getElementById('player-two-text');
+  playerOneElement.classList.remove('underline');
+  playerTwoElement.classList.add('underline');
   let square = checkGameBoard(false);
   if (!square) {
     square = checkGameBoard(true);
@@ -216,7 +218,10 @@ function computerTurn() {
 }
 
 function playerOneTurn() {
-  document.removeEventListener('click', playAgainYesClickHandler);
+  const playerOneElement = document.getElementById('player-one-text');
+  const playerTwoElement = document.getElementById('player-two-text');
+  playerTwoElement.classList.remove('underline');
+  playerOneElement.classList.add('underline');
   document.addEventListener('click', playerOneClickHandler);
 }
 
@@ -250,6 +255,10 @@ function playerOneClickHandler(event) {
 }
 
 function playerTwoTurn() {
+  const playerOneElement = document.getElementById('player-one-text');
+  const playerTwoElement = document.getElementById('player-two-text');
+  playerOneElement.classList.remove('underline');
+  playerTwoElement.classList.add('underline');
   document.addEventListener('click', playerTwoClickHandler);
 }
 
