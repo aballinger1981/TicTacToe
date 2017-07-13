@@ -76,6 +76,7 @@ function playAgainYesClickHandler(event) {
 }
 
 function playAgainNoClickHandler(event) {
+  if (!event) { event = window.event; }
   const gameBoardElement = document.getElementById('game-board');
   const playerDataElement = document.getElementById('player-data');
   const resetElement = document.getElementById('reset-container');
@@ -86,56 +87,72 @@ function playAgainNoClickHandler(event) {
   resetElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
   playAgainElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
   numberOfPlayers = '';
+  document.removeEventListener('click', playAgainNoClickHandler);
   resetBoard();
   playerSelectELement.setAttribute('style', 'animation: fadeIn 1s linear forwards');
-  document.removeEventListener('click', playAgainNoClickHandler);
   playerSelectHandler();
 }
 
 function playerSelectHandler() {
-  const playerChoice = document.getElementsByClassName('player-choice');
-  for (let i = 0; i < playerChoice.length; i++) {
-    playerChoice[i].addEventListener('click', function () {
-      const playerSelect = document.getElementById('player-select');
-      const gamePieceSelect = document.getElementById('game-piece-select');
-      playerSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
+  document.addEventListener('click', playerSelectClickHandler);
+}
 
-      setTimeout(() => {
-        playerSelect.setAttribute('style', 'display: none');
-      }, 1000);
+function playerSelectClickHandler(event) {
+  if (!event) { event = window.event; }
 
-      gamePieceSelect.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
-      numberOfPlayers = playerChoice[i].id;
-      gamePieceSelectionHandler();
-    });
+  if (event.target.classList.contains('player-choice')) {
+    const playerSelect = document.getElementById('player-select');
+    const gamePieceSelect = document.getElementById('game-piece-select');
+    playerSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
+
+    setTimeout(() => {
+      playerSelect.setAttribute('style', 'display: none');
+    }, 1000);
+
+    gamePieceSelect.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
+    if (event.target.id === 'one-player') {
+      numberOfPlayers = 'one-player';
+    } else {
+      numberOfPlayers = 'two-players';
+    }
+    document.removeEventListener('click', playerSelectClickHandler);
+    gamePieceSelectionHandler();
   }
 }
 
 function gamePieceSelectionHandler() {
-  const xAndO = document.getElementsByClassName('xAndO');
-  for (let i = 0; i < xAndO.length; i++) {
-    xAndO[i].addEventListener('click', function () {
-      const gamePieceSelect = document.getElementById('game-piece-select');
-      const gameBoard = document.getElementById('game-board');
-      const playerData = document.getElementById('player-data');
-      const reset = document.getElementById('reset-container');
-      gamePieceSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
+  document.addEventListener('click', gamePieceClickHandler);
+}
 
-      setTimeout(() => {
-        gamePieceSelect.setAttribute('style', 'display: none');
-      }, 1000);
+function gamePieceClickHandler(event) {
+  if (!event) { event = window.event; }
 
-      gameBoard.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
-      playerData.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
-      reset.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
-      xOrO = xAndO[i].id;
-      setPlayerTwoName();
-      if (numberOfPlayers === 'one-player') {
-        computerTurn();
-      } else {
-        playerOneTurn();
-      }
-    });
+  if (event.target.classList.contains('xAndO')) {
+    const gamePieceSelect = document.getElementById('game-piece-select');
+    const gameBoard = document.getElementById('game-board');
+    const playerData = document.getElementById('player-data');
+    const reset = document.getElementById('reset-container');
+    gamePieceSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
+
+    setTimeout(() => {
+      gamePieceSelect.setAttribute('style', 'display: none');
+    }, 1000);
+
+    gameBoard.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
+    playerData.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
+    reset.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
+    if (event.target.id === 'x') {
+      xOrO = 'x';
+    } else {
+      xOrO = 'o';
+    }
+    setPlayerTwoName();
+    document.removeEventListener('click', gamePieceClickHandler);
+    if (numberOfPlayers === 'one-player') {
+      computerTurn();
+    } else {
+      playerOneTurn();
+    }
   }
 }
 
@@ -182,7 +199,7 @@ function computerTurn() {
     gameMap.set(square.id, square.innerHTML);
     const computerWon = checkForWinner('computer');
     const numberOfSquaresFilled = checkForDraw();
-    if (numberOfSquaresFilled === 9) {
+    if (!computerWon && numberOfSquaresFilled === 9) {
       playAgain();
     } else if (!computerWon) {
       playerOneTurn();
@@ -214,7 +231,7 @@ function playerOneClickHandler(event) {
     gameMap.set(event.target.id, event.target.innerHTML);
     const playerOneWon = checkForWinner('playerOne');
     const numberOfSquaresFilled = checkForDraw();
-    if (numberOfSquaresFilled === 9) {
+    if (!playerOneWon && numberOfSquaresFilled === 9) {
       playAgain();
     } else if (!playerOneWon && numberOfPlayers === 'one-player') {
       computerTurn();
@@ -247,7 +264,7 @@ function playerTwoClickHandler(event) {
     gameMap.set(event.target.id, event.target.innerHTML);
     const playerTwoWon = checkForWinner('playerTwo');
     const numberOfSquaresFilled = checkForDraw();
-    if (numberOfSquaresFilled === 9) {
+    if (!playerTwoWon && numberOfSquaresFilled === 9) {
       playAgain();
     } else if (!playerTwoWon) {
       playerOneTurn();
