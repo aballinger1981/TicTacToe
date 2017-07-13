@@ -34,6 +34,16 @@ function resetBoard() {
     score.innerHTML = '0';
   });
   gameMap.clear();
+  whoWon = {};
+  playerOneWins = 0;
+  playerTwoOrComputerWins = 0;
+  document.removeEventListener('click', playerOneClickHandler);
+  document.removeEventListener('click', playerTwoClickHandler);
+  if (numberOfPlayers === 'one-player') {
+    computerTurn();
+  } else {
+    playerOneTurn();
+  }
 }
 
 function playerSelectHandler() {
@@ -134,8 +144,11 @@ function computerTurn() {
 }
 
 function playerOneTurn() {
-  document.addEventListener('click', function handler(event) {
-    if (!event) { event = window.event; }
+  document.addEventListener('click', playerOneClickHandler);
+}
+
+function playerOneClickHandler(event) {
+  if (!event) { event = window.event; }
 
     if (event.target.classList.contains('square-content')
       && event.target.innerHTML == '') {
@@ -144,7 +157,7 @@ function playerOneTurn() {
       } else {
         event.target.innerHTML = 'O';
       }
-      document.removeEventListener('click', handler);
+      document.removeEventListener('click', playerOneClickHandler);
       gameMap.set(event.target.id, event.target.innerHTML);
       const playerOneWon = checkForWinner('playerOne');
       if (!playerOneWon && numberOfPlayers === 'one-player') {
@@ -157,12 +170,14 @@ function playerOneTurn() {
         playerOneScore.innerHTML = playerOneWins;
       }
     }
-  });
 }
 
 function playerTwoTurn() {
-  document.addEventListener('click', function handler(event) {
-    if (!event) { event = window.event; }
+  document.addEventListener('click', playerTwoClickHandler);
+}
+
+function playerTwoClickHandler(event) {
+  if (!event) { event = window.event; }
 
     if (event.target.classList.contains('square-content')
       && event.target.innerHTML == '') {
@@ -171,7 +186,7 @@ function playerTwoTurn() {
       } else {
         event.target.innerHTML = 'X';
       }
-      document.removeEventListener('click', handler);
+      document.removeEventListener('click', playerTwoClickHandler);
       gameMap.set(event.target.id, event.target.innerHTML);
       const playerTwoWon = checkForWinner('playerTwo');
       if (!playerTwoWon) {
@@ -182,7 +197,6 @@ function playerTwoTurn() {
         playerTwoScore.innerHTML = playerTwoOrComputerWins;
       }
     }
-  });
 }
 
 function checkGameBoard(checkingOpponent) {
@@ -227,7 +241,6 @@ function findWinner(player, letter) {
     if (gameMap.get(combinations[i].id1) === letter
       && gameMap.get(combinations[i].id2) === letter
       && gameMap.get(combinations[i].id3) === letter) {
-
       whoWon = { winner: player, position: combinations[i].position };
       return true;
     }
