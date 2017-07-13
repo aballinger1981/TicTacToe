@@ -20,7 +20,7 @@ body, html {
   height: 960px;
   width: 866.5px;
   margin: auto;
-  background-image: url("./images/chalkboard_with_border.png");
+  background-image: url("./images/chalkboard_with_border.gif");
   background-size: cover;
   border-radius: 20px;
 }
@@ -209,7 +209,7 @@ body, html {
   width: 866.5px;
   opacity: .9;
   visibility: hidden;
-  background-image: url("./images/chalkboard_with_border.png");
+  background-image: url("./images/chalkboard_with_border.gif");
   background-size: cover;
   border-radius: 20px;
 }
