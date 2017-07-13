@@ -34,6 +34,8 @@ body, html {
   position: absolute;
   color: white;
   font-size: 6em;
+  width: 100%;
+  height: 100%;
 }
 
 .player-choice:hover {
@@ -96,6 +98,8 @@ body, html {
   font-size: 4em;
   text-align: center;
   position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 #game-pieces {
@@ -223,22 +227,25 @@ body, html {
 }
 
 .winner-one {
-  animation: blinkBackground 1s .25s infinite;
+  animation: blinkBackground 1s .25s linear;
+  color: #FDE58D;
 }
 
 .winner-two {
-  animation: blinkBackground 1s .5s infinite;
+  animation: blinkBackground 1s .5s linear;
+  color: #FDE58D;
 }
 
 .winner-three {
-  animation: blinkBackground 1s .75s infinite;
+  animation: blinkBackground 1s .75s linear;
+  color: #FDE58D;
 }
 
 @keyframes blinkBackground {
-  0%, 49% {
-    color: #FDE58D;
-  }
-  50%, 100% {
+  0% {
     color: white;
+  }
+  100% {
+    color: #FDE58D;
   }
 }
