@@ -237,11 +237,11 @@ body, html {
 }
 
 .winner-two {
-  animation: blinkBackground 1s .45s infinite;
+  animation: blinkBackground 1s .5s infinite;
 }
 
 .winner-three {
-  animation: blinkBackground 1s .65s infinite;
+  animation: blinkBackground 1s .75s infinite;
 }
 
 @keyframes blinkBackground {
