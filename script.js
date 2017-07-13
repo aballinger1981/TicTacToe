@@ -46,33 +46,37 @@ function resetBoard() {
   }
 }
 
-function playAgainHandler() {
+function playAgain() {
   const playAgainElement = document.getElementById('play-again');
   playAgainElement.setAttribute('style', 'animation: fadeInPlayAgain 1s linear forwards');
   document.removeEventListener('click', playerOneClickHandler);
   document.removeEventListener('click', playerTwoClickHandler);
   const playAgainYes = document.getElementById('play-again-yes');
   const playAgainNo = document.getElementById('play-again-no');
+  gameMap.clear();
+  whoWon = {};
 
-  playAgainYes.addEventListener('click', function playAgainClickHandler() {
-    const gameSquares = document.getElementsByClassName('square-content');
-    gameMap.clear();
-    whoWon = {};
-    Array.prototype.forEach.call(gameSquares, square => {
-      square.innerHTML = '';
-    });
-    document.removeEventListener('click', playAgainClickHandler);
-    playAgainElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
+  playAgainYes.addEventListener('click', playAgainYesClickHandler);
+  playAgainNo.addEventListener('click', playAgainNoClickHandler);
+}
 
-    if (numberOfPlayers === 'one-player') {
-      computerTurn();
-    } else {
-      playerOneTurn();
-    }
+function playAgainYesClickHandler(event) {
+  const playAgainElement = document.getElementById('play-again');
+  const gameSquares = document.getElementsByClassName('square-content');
+  Array.prototype.forEach.call(gameSquares, square => {
+    square.innerHTML = '';
   });
-  playAgainNo.addEventListener('click', function playAgainNoClickHandler() {
+  playAgainElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
 
-  });
+  if (numberOfPlayers === 'one-player') {
+    computerTurn();
+  } else {
+    playerOneTurn();
+  }
+}
+
+function playAgainNoClickHandler(event) {
+
 }
 
 function playerSelectHandler() {
@@ -143,6 +147,7 @@ function getLetterForComputerOrPlayerTwo() {
 }
 
 function computerTurn() {
+  document.removeEventListener('click', playAgainYesClickHandler);
   let square = checkGameBoard(false);
   if (!square) {
     square = checkGameBoard(true);
@@ -168,12 +173,13 @@ function computerTurn() {
       playerTwoOrComputerWins++;
       const playerTwoScore = document.getElementById('player-two-score');
       playerTwoScore.innerHTML = playerTwoOrComputerWins;
-      playAgainHandler();
+      playAgain();
     }
   }, 2000);
 }
 
 function playerOneTurn() {
+  document.removeEventListener('click', playAgainYesClickHandler);
   document.addEventListener('click', playerOneClickHandler);
 }
 
@@ -198,7 +204,7 @@ function playerOneClickHandler(event) {
       playerOneWins++;
       const playerOneScore = document.getElementById('player-one-score');
       playerOneScore.innerHTML = playerOneWins;
-      playAgainHandler();
+      playAgain();
     }
   }
 }
@@ -226,7 +232,7 @@ function playerTwoClickHandler(event) {
       playerTwoOrComputerWins++;
       const playerTwoScore = document.getElementById('player-two-score');
       playerTwoScore.innerHTML = playerTwoOrComputerWins;
-      playAgainHandler();
+      playAgain();
     }
   }
 }
