@@ -48,7 +48,7 @@ function resetBoard() {
 
 function playAgain() {
   const playAgainElement = document.getElementById('play-again');
-  playAgainElement.setAttribute('style', 'animation: fadeInPlayAgain 1s linear forwards');
+  playAgainElement.setAttribute('style', 'animation: fadeInPlayAgain 1s 2s linear forwards');
   document.removeEventListener('click', playerOneClickHandler);
   document.removeEventListener('click', playerTwoClickHandler);
   const playAgainYes = document.getElementById('play-again-yes');
@@ -68,6 +68,12 @@ function playAgainYesClickHandler(event) {
   });
   playAgainElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
   document.removeEventListener('click', playAgainYesClickHandler);
+  const squaresToRemoveWinnerClassFrom = document.getElementsByClassName('square-content');
+    Array.prototype.forEach.call(squaresToRemoveWinnerClassFrom, square => {
+      square.classList.remove('winner-one');
+      square.classList.remove('winner-two');
+      square.classList.remove('winner-three');
+    });
   if (numberOfPlayers === 'one-player') {
     computerTurn();
   } else {
@@ -88,6 +94,12 @@ function playAgainNoClickHandler(event) {
   playAgainElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
   numberOfPlayers = '';
   document.removeEventListener('click', playAgainNoClickHandler);
+  const squaresToRemoveWinnerClassFrom = document.getElementsByClassName('square-content');
+    Array.prototype.forEach.call(squaresToRemoveWinnerClassFrom, square => {
+      square.classList.remove('winner-one');
+      square.classList.remove('winner-two');
+      square.classList.remove('winner-three');
+    });
   resetBoard();
   playerSelectELement.setAttribute('style', 'animation: fadeIn 1s linear forwards');
   playerSelect();
@@ -209,6 +221,7 @@ function computerTurn() {
     } else if (!computerWon) {
       playerOneTurn();
     } else {
+      winHandler();
       playerTwoOrComputerWins++;
       const playerTwoScore = document.getElementById('player-two-score');
       playerTwoScore.innerHTML = playerTwoOrComputerWins;
@@ -246,6 +259,7 @@ function playerOneClickHandler(event) {
     } else if (!playerOneWon && numberOfPlayers === 'two-players') {
       playerTwoTurn();
     } else {
+      winHandler();
       playerOneWins++;
       const playerOneScore = document.getElementById('player-one-score');
       playerOneScore.innerHTML = playerOneWins;
@@ -281,6 +295,7 @@ function playerTwoClickHandler(event) {
     } else if (!playerTwoWon) {
       playerOneTurn();
     } else {
+      winHandler();
       playerTwoOrComputerWins++;
       const playerTwoScore = document.getElementById('player-two-score');
       playerTwoScore.innerHTML = playerTwoOrComputerWins;
@@ -331,7 +346,13 @@ function findWinner(player, letter) {
     if (gameMap.get(combinations[i].id1) === letter
       && gameMap.get(combinations[i].id2) === letter
       && gameMap.get(combinations[i].id3) === letter) {
-      whoWon = { winner: player, position: combinations[i].position };
+      whoWon = {
+        winner: player,
+        squareOne: combinations[i].id1,
+        squareTwo: combinations[i].id2,
+        squareThree: combinations[i].id3,
+        position: combinations[i].position
+      };
       return true;
     }
   }
@@ -345,4 +366,13 @@ function checkForDraw() {
     }
   });
   return gameSquareArray.length;
+}
+
+function winHandler() {
+  const squareOne = document.getElementById(whoWon.squareOne);
+  const squareTwo = document.getElementById(whoWon.squareTwo);
+  const squareThree = document.getElementById(whoWon.squareThree);
+  squareOne.classList.add('winner-one');
+  squareTwo.classList.add('winner-two');
+  squareThree.classList.add('winner-three');
 }
