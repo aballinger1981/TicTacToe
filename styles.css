@@ -18,9 +18,9 @@ body, html {
   align-items: center;
   flex-direction: column;
   height: 960px;
-  width: 866.5px;
+  width: 867px;
   margin: auto;
-  background-image: url("./images/chalkboard_with_border.gif");
+  background-image: url("./images/chalkboard_with_border_resized.gif");
   background-size: cover;
   border-radius: 20px;
 }
@@ -206,10 +206,10 @@ body, html {
   display: flex;
   color: white;
   height: 960px;
-  width: 866.5px;
+  width: 867px;
   opacity: .9;
   visibility: hidden;
-  background-image: url("./images/chalkboard_with_border.gif");
+  background-image: url("./images/chalkboard_with_border_resized.gif");
   background-size: cover;
   border-radius: 20px;
 }
