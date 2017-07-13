@@ -48,14 +48,27 @@ function resetBoard() {
 
 function playAgainHandler() {
   const playAgainElement = document.getElementById('play-again');
-
-  playAgainElement.setAttribute('style', 'animation: fadeInPlayAgain 1s 1s linear forwards');
-
+  playAgainElement.setAttribute('style', 'animation: fadeInPlayAgain 1s linear forwards');
+  document.removeEventListener('click', playerOneClickHandler);
+  document.removeEventListener('click', playerTwoClickHandler);
   const playAgainYes = document.getElementById('play-again-yes');
   const playAgainNo = document.getElementById('play-again-no');
 
   playAgainYes.addEventListener('click', function playAgainClickHandler() {
+    const gameSquares = document.getElementsByClassName('square-content');
+    gameMap.clear();
+    whoWon = {};
+    Array.prototype.forEach.call(gameSquares, square => {
+      square.innerHTML = '';
+    });
+    document.removeEventListener('click', playAgainClickHandler);
+    playAgainElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
 
+    if (numberOfPlayers === 'one-player') {
+      computerTurn();
+    } else {
+      playerOneTurn();
+    }
   });
   playAgainNo.addEventListener('click', function playAgainNoClickHandler() {
 
@@ -167,27 +180,27 @@ function playerOneTurn() {
 function playerOneClickHandler(event) {
   if (!event) { event = window.event; }
 
-    if (event.target.classList.contains('square-content')
-      && event.target.innerHTML == '') {
-      if (xOrO === 'x') {
-        event.target.innerHTML = 'X';
-      } else {
-        event.target.innerHTML = 'O';
-      }
-      document.removeEventListener('click', playerOneClickHandler);
-      gameMap.set(event.target.id, event.target.innerHTML);
-      const playerOneWon = checkForWinner('playerOne');
-      if (!playerOneWon && numberOfPlayers === 'one-player') {
-        computerTurn();
-      } else if (!playerOneWon && numberOfPlayers === 'two-players') {
-        playerTwoTurn();
-      } else {
-        playerOneWins++;
-        const playerOneScore = document.getElementById('player-one-score');
-        playerOneScore.innerHTML = playerOneWins;
-        playAgainHandler();
-      }
+  if (event.target.classList.contains('square-content')
+    && event.target.innerHTML == '') {
+    if (xOrO === 'x') {
+      event.target.innerHTML = 'X';
+    } else {
+      event.target.innerHTML = 'O';
     }
+    document.removeEventListener('click', playerOneClickHandler);
+    gameMap.set(event.target.id, event.target.innerHTML);
+    const playerOneWon = checkForWinner('playerOne');
+    if (!playerOneWon && numberOfPlayers === 'one-player') {
+      computerTurn();
+    } else if (!playerOneWon && numberOfPlayers === 'two-players') {
+      playerTwoTurn();
+    } else {
+      playerOneWins++;
+      const playerOneScore = document.getElementById('player-one-score');
+      playerOneScore.innerHTML = playerOneWins;
+      playAgainHandler();
+    }
+  }
 }
 
 function playerTwoTurn() {
@@ -197,25 +210,25 @@ function playerTwoTurn() {
 function playerTwoClickHandler(event) {
   if (!event) { event = window.event; }
 
-    if (event.target.classList.contains('square-content')
-      && event.target.innerHTML == '') {
-      if (xOrO === 'x') {
-        event.target.innerHTML = 'O';
-      } else {
-        event.target.innerHTML = 'X';
-      }
-      document.removeEventListener('click', playerTwoClickHandler);
-      gameMap.set(event.target.id, event.target.innerHTML);
-      const playerTwoWon = checkForWinner('playerTwo');
-      if (!playerTwoWon) {
-        playerOneTurn();
-      } else {
-        playerTwoOrComputerWins++;
-        const playerTwoScore = document.getElementById('player-two-score');
-        playerTwoScore.innerHTML = playerTwoOrComputerWins;
-        playAgainHandler();
-      }
+  if (event.target.classList.contains('square-content')
+    && event.target.innerHTML == '') {
+    if (xOrO === 'x') {
+      event.target.innerHTML = 'O';
+    } else {
+      event.target.innerHTML = 'X';
     }
+    document.removeEventListener('click', playerTwoClickHandler);
+    gameMap.set(event.target.id, event.target.innerHTML);
+    const playerTwoWon = checkForWinner('playerTwo');
+    if (!playerTwoWon) {
+      playerOneTurn();
+    } else {
+      playerTwoOrComputerWins++;
+      const playerTwoScore = document.getElementById('player-two-score');
+      playerTwoScore.innerHTML = playerTwoOrComputerWins;
+      playAgainHandler();
+    }
+  }
 }
 
 function checkGameBoard(checkingOpponent) {

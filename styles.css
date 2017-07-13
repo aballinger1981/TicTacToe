@@ -203,9 +203,11 @@ body, html {
   color: white;
   height: 960px;
   width: 866.5px;
-  background-color: black;
   opacity: .9;
   visibility: hidden;
+  background-image: url("./images/chalkboard_with_border.png");
+  background-size: cover;
+  border-radius: 20px;
 }
 
 #play-again-question {
