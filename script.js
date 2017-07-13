@@ -148,6 +148,7 @@ function getLetterForComputerOrPlayerTwo() {
 
 function computerTurn() {
   document.removeEventListener('click', playAgainYesClickHandler);
+
   let square = checkGameBoard(false);
   if (!square) {
     square = checkGameBoard(true);
@@ -167,7 +168,10 @@ function computerTurn() {
     square.innerHTML = getLetterForComputerOrPlayerTwo();
     gameMap.set(square.id, square.innerHTML);
     const computerWon = checkForWinner('computer');
-    if (!computerWon) {
+    const numberOfSquaresFilled = checkForDraw();
+    if (numberOfSquaresFilled === 9) {
+      playAgain();
+    } else if (!computerWon) {
       playerOneTurn();
     } else {
       playerTwoOrComputerWins++;
@@ -196,7 +200,10 @@ function playerOneClickHandler(event) {
     document.removeEventListener('click', playerOneClickHandler);
     gameMap.set(event.target.id, event.target.innerHTML);
     const playerOneWon = checkForWinner('playerOne');
-    if (!playerOneWon && numberOfPlayers === 'one-player') {
+    const numberOfSquaresFilled = checkForDraw();
+    if (numberOfSquaresFilled === 9) {
+      playAgain();
+    } else if (!playerOneWon && numberOfPlayers === 'one-player') {
       computerTurn();
     } else if (!playerOneWon && numberOfPlayers === 'two-players') {
       playerTwoTurn();
@@ -226,7 +233,10 @@ function playerTwoClickHandler(event) {
     document.removeEventListener('click', playerTwoClickHandler);
     gameMap.set(event.target.id, event.target.innerHTML);
     const playerTwoWon = checkForWinner('playerTwo');
-    if (!playerTwoWon) {
+    const numberOfSquaresFilled = checkForDraw();
+    if (numberOfSquaresFilled === 9) {
+      playAgain();
+    } else if (!playerTwoWon) {
       playerOneTurn();
     } else {
       playerTwoOrComputerWins++;
@@ -283,4 +293,14 @@ function findWinner(player, letter) {
       return true;
     }
   }
+}
+
+function checkForDraw() {
+  const gameSquares = document.getElementsByClassName('square-content');
+  const gameSquareArray = Array.prototype.filter.call(gameSquares, square => {
+    if (square.innerHTML !== '') {
+      return square;
+    }
+  });
+  return gameSquareArray.length;
 }
