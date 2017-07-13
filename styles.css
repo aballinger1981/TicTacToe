@@ -6,6 +6,7 @@ body, html {
   justify-content: center;
   align-items: center;
   background-color: black;
+  font-family: 'Love Ya Like A Sister', cursive;
 }
 
 .player-choice, .xAndO, #reset-button {
@@ -33,10 +34,6 @@ body, html {
   position: absolute;
   color: white;
   font-size: 6em;
-}
-
-.player-choice {
-  font-family: 'Love Ya Like A Sister', cursive;
 }
 
 .player-choice:hover {
@@ -86,12 +83,10 @@ body, html {
 }
 
 #or {
-  font-family: 'Love Ya Like A Sister', cursive;
   font-size: .5em;
 }
 
 #game-piece-select {
-  font-family: 'Love Ya Like A Sister', cursive;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -123,7 +118,6 @@ body, html {
 }
 
 #player-data {
-  font-family: 'Love Ya Like A Sister', cursive;
   display: flex;
   visibility: hidden;
   justify-content: space-between;
@@ -133,12 +127,10 @@ body, html {
 }
 
 .score {
-  font-family: 'Love Ya Like A Sister', cursive;
   font-size: 1.2em;
 }
 
 #reset-container {
-  font-family: 'Love Ya Like A Sister', cursive;
   display: flex;
   visibility: hidden;
   width: 75%;
@@ -158,7 +150,6 @@ body, html {
 }
 
 .game-square {
-  font-family: 'Love Ya Like A Sister', cursive;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -198,7 +189,6 @@ body, html {
 }
 
 #play-again {
-  font-family: 'Love Ya Like A Sister', cursive;
   flex-direction: column;
   justify-content: center;
   align-items: center;

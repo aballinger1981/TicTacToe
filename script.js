@@ -111,16 +111,13 @@ function playerSelect() {
 
 function playerSelectClickHandler(event) {
   if (!event) { event = window.event; }
-
   if (event.target.classList.contains('player-choice')) {
     const playerSelect = document.getElementById('player-select');
     const gamePieceSelect = document.getElementById('game-piece-select');
     playerSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
-
     setTimeout(() => {
       playerSelect.setAttribute('style', 'display: none');
     }, 1000);
-
     gamePieceSelect.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
     if (event.target.id === 'one-player') {
       numberOfPlayers = 'one-player';
@@ -138,18 +135,15 @@ function gamePieceSelection() {
 
 function gamePieceClickHandler(event) {
   if (!event) { event = window.event; }
-
   if (event.target.classList.contains('xAndO')) {
     const gamePieceSelect = document.getElementById('game-piece-select');
     const gameBoard = document.getElementById('game-board');
     const playerData = document.getElementById('player-data');
     const reset = document.getElementById('reset-container');
     gamePieceSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
-
     setTimeout(() => {
       gamePieceSelect.setAttribute('style', 'display: none');
     }, 1000);
-
     gameBoard.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
     playerData.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
     reset.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
@@ -200,7 +194,6 @@ function computerTurn() {
   if (!square) {
     square = checkGameBoard(true);
   }
-
   if (!square) {
     let randomNumber = getRandomNumber();
     let randomNumberToString = randomNumber.toString();
@@ -210,7 +203,6 @@ function computerTurn() {
     }
     square = document.getElementById(randomNumber);
   }
-
   setTimeout(() => {
     square.innerHTML = getLetterForComputerOrPlayerTwo();
     gameMap.set(square.id, square.innerHTML);
@@ -240,7 +232,6 @@ function playerOneTurn() {
 
 function playerOneClickHandler(event) {
   if (!event) { event = window.event; }
-
   if (event.target.classList.contains('square-content')
     && event.target.innerHTML == '') {
     if (xOrO === 'x') {
@@ -278,7 +269,6 @@ function playerTwoTurn() {
 
 function playerTwoClickHandler(event) {
   if (!event) { event = window.event; }
-
   if (event.target.classList.contains('square-content')
     && event.target.innerHTML == '') {
     if (xOrO === 'x') {
