@@ -20,10 +20,14 @@ body, html {
   flex-direction: column;
   height: 960px;
   width: 867px;
-  margin: auto;
   background-image: url("./images/chalkboard_with_border_resized.gif");
   background-size: cover;
   border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -480px;
+  margin-left: -433.5px;
 }
 
 #player-select {
@@ -32,10 +36,14 @@ body, html {
   align-items: center;
   flex-direction: column;
   position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -480px;
+  margin-left: -433.5px;
   color: white;
   font-size: 6em;
-  width: 100%;
-  height: 100%;
+  height: 960px !important;
+  width: 867px;
 }
 
 .player-choice:hover {
@@ -97,9 +105,14 @@ body, html {
   color: white;
   font-size: 4em;
   text-align: center;
+  position: relative;
+  height: 960px;
+  width: 867px;
   position: absolute;
-  width: 100%;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  margin-top: -480px;
+  margin-left: -433.5px;
 }
 
 #game-pieces {
@@ -128,6 +141,7 @@ body, html {
   width: 75%;
   font-size: 3em;
   color: white;
+  position: relative;
 }
 
 .score {
@@ -141,6 +155,7 @@ body, html {
   justify-content: flex-start;
   font-size: 3em;
   color: white;
+  position: relative;
 }
 
 #reset-button:hover {
@@ -151,6 +166,7 @@ body, html {
   margin-top: 30px;
   margin-bottom: 30px;
   visibility: hidden;
+  position: relative;
 }
 
 .game-square {
@@ -193,11 +209,15 @@ body, html {
 }
 
 #play-again {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
-  display: flex;
+  top: 50%;
+  left: 50%;
+  margin-top: -480px;
+  margin-left: -433.5px;
   color: white;
   height: 960px;
   width: 867px;

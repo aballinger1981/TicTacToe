@@ -28,10 +28,10 @@ function resetClickHandler(event) {
 function resetBoard() {
   const gameSquares = document.getElementsByClassName('square-content');
   const scores = document.getElementsByClassName('score');
-  Array.prototype.forEach.call(gameSquares, square => {
+  Array.prototype.forEach.call(gameSquares, function(square) {
     square.innerHTML = '';
   });
-  Array.prototype.forEach.call(scores, score => {
+  Array.prototype.forEach.call(scores, function(score) {
     score.innerHTML = '0';
   });
   gameMap.clear();
@@ -47,7 +47,7 @@ function resetBoard() {
   } else if (numberOfPlayers === 'two-players') {
     playerOneTurn();
   }
-  setTimeout(() => {
+  setTimeout(function() {
       resetContainerElement.addEventListener('click', resetClickHandler);
     }, 2000);
 }
@@ -69,13 +69,13 @@ function playAgainYesClickHandler(event) {
   if (!event) { event = window.event; }
   const playAgainElement = document.getElementById('play-again');
   const gameSquares = document.getElementsByClassName('square-content');
-  Array.prototype.forEach.call(gameSquares, square => {
+  Array.prototype.forEach.call(gameSquares, function(square) {
     square.innerHTML = '';
   });
   playAgainElement.setAttribute('style', 'animation: fadeOut .5s linear forwards');
   document.removeEventListener('click', playAgainYesClickHandler);
   const squaresToRemoveWinnerClassFrom = document.getElementsByClassName('square-content');
-  Array.prototype.forEach.call(squaresToRemoveWinnerClassFrom, square => {
+  Array.prototype.forEach.call(squaresToRemoveWinnerClassFrom, function(square) {
     square.classList.remove('winner-one');
     square.classList.remove('winner-two');
     square.classList.remove('winner-three');
@@ -101,7 +101,7 @@ function playAgainNoClickHandler(event) {
   numberOfPlayers = '';
   document.removeEventListener('click', playAgainNoClickHandler);
   const squaresToRemoveWinnerClassFrom = document.getElementsByClassName('square-content');
-  Array.prototype.forEach.call(squaresToRemoveWinnerClassFrom, square => {
+  Array.prototype.forEach.call(squaresToRemoveWinnerClassFrom, function(square) {
     square.classList.remove('winner-one');
     square.classList.remove('winner-two');
     square.classList.remove('winner-three');
@@ -121,10 +121,10 @@ function playerSelectClickHandler(event) {
     const playerSelect = document.getElementById('player-select');
     const gamePieceSelect = document.getElementById('game-piece-select');
     playerSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
-    setTimeout(() => {
+    setTimeout(function() {
       playerSelect.setAttribute('style', 'display: none');
-    }, 1000);
-    gamePieceSelect.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
+    }, 500);
+    gamePieceSelect.setAttribute('style', 'animation: fadeIn 1s .75s linear forwards');
     if (event.target.id === 'one-player') {
       numberOfPlayers = 'one-player';
     } else {
@@ -146,10 +146,10 @@ function gamePieceClickHandler(event) {
     const gameBoard = document.getElementById('game-board');
     const playerData = document.getElementById('player-data');
     const reset = document.getElementById('reset-container');
-    gamePieceSelect.setAttribute('style', 'animation: fadeOut .5s linear forwards');
-    setTimeout(() => {
+    gamePieceSelect.setAttribute('style', 'animation: fadeOut 1s .5s linear forwards');
+    setTimeout(function() {
       gamePieceSelect.setAttribute('style', 'display: none');
-    }, 1000);
+    }, 500);
     gameBoard.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
     playerData.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
     reset.setAttribute('style', 'animation: fadeIn 1s 1s linear forwards');
@@ -209,7 +209,7 @@ function computerTurn() {
     }
     square = document.getElementById(randomNumber);
   }
-  setTimeout(() => {
+  setTimeout(function() {
     square.innerHTML = getLetterForComputerOrPlayerTwo();
     gameMap.set(square.id, square.innerHTML);
     const computerWon = checkForWinner('computer');
@@ -356,7 +356,7 @@ function findWinner(player, letter) {
 
 function checkForDraw() {
   const gameSquares = document.getElementsByClassName('square-content');
-  const gameSquareArray = Array.prototype.filter.call(gameSquares, square => {
+  const gameSquareArray = Array.prototype.filter.call(gameSquares, function(square) {
     if (square.innerHTML !== '') {
       return square;
     }
