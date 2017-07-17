@@ -16,6 +16,7 @@ let playerTwoOrComputerWins = 0;
 
 function ready() {
   playerSelect();
+
   const resetContainerElement = document.getElementById('reset-container');
   resetContainerElement.addEventListener('click', resetClickHandler);
 }

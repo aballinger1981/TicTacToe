@@ -2,6 +2,7 @@
 
 body, html {
   height: 100%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,16 +19,15 @@ body, html {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 960px;
-  width: 867px;
+  height: 90%;
+  width: 45%;
+  min-height: 480px;
+  min-width: 320px;
   background-image: url("./images/chalkboard_with_border_resized.gif");
-  background-size: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   border-radius: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -480px;
-  margin-left: -433.5px;
+  position: relative;
 }
 
 #player-select {
@@ -36,14 +36,10 @@ body, html {
   align-items: center;
   flex-direction: column;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -480px;
-  margin-left: -433.5px;
   color: white;
   font-size: 6em;
-  height: 960px !important;
-  width: 867px;
+  height: 100%;
+  width: 100%;
 }
 
 .player-choice:hover {
@@ -106,13 +102,9 @@ body, html {
   font-size: 4em;
   text-align: center;
   position: relative;
-  height: 960px;
-  width: 867px;
+  height: 100%;
+  width: 100%;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -480px;
-  margin-left: -433.5px;
 }
 
 #game-pieces {
@@ -134,11 +126,21 @@ body, html {
   color: white;
 }
 
+#game-board-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 80%;
+}
+
 #player-data {
   display: flex;
   visibility: hidden;
   justify-content: space-between;
-  width: 75%;
+  height: 12%;
+  width: 90%;
   font-size: 3em;
   color: white;
   position: relative;
@@ -151,11 +153,13 @@ body, html {
 #reset-container {
   display: flex;
   visibility: hidden;
-  width: 75%;
+  height: 12%;
+  width: 90%;
   justify-content: flex-start;
   font-size: 3em;
   color: white;
   position: relative;
+  align-items:center;
 }
 
 #reset-button:hover {
@@ -163,6 +167,8 @@ body, html {
 }
 
 #game-board {
+  height: 70%;
+  width: 90%;
   margin-top: 30px;
   margin-bottom: 30px;
   visibility: hidden;
@@ -173,9 +179,8 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 190px;
-  width: 190px;
-  font-size: 15em;
+  height: 100%;
+  width: 100%;
   color: white;
 }
 
@@ -186,6 +191,7 @@ body, html {
   width: 100%;
   height: 100%;
   margin: 0;
+  font-size: 800%;
   -moz-user-select: none;
 }
 
@@ -193,6 +199,8 @@ body, html {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  height: 33%;
+  width: 100%;
 }
 
 #square-one, #square-two, #square-four, #square-five {
@@ -214,17 +222,15 @@ body, html {
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -480px;
-  margin-left: -433.5px;
   color: white;
-  height: 960px;
-  width: 867px;
+  height: 100%;
+  width: 100%;
   opacity: .9;
   visibility: hidden;
   background-image: url("./images/chalkboard_with_border_resized.gif");
   background-size: cover;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
   border-radius: 20px;
 }
 
@@ -267,5 +273,74 @@ body, html {
   }
   100% {
     color: #FDE58D;
+  }
+}
+
+@media (max-height: 900px) {
+  .square-content {
+    font-size: 400%;
+  }
+  #player-data, #reset-container {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-height: 500px) {
+  .square-content {
+    font-size: 300%;
+  }
+}
+
+@media (max-width: 1600px) {
+  #player-select {
+    font-size: 5em;
+  }
+}
+
+@media (max-width: 1400px) {
+  #player-select {
+    font-size: 4em;
+  }
+  #game-piece-select {
+    font-size: 3em;
+  }
+  #player-data, #reset-container {
+    font-size: 2.5em;
+  }
+  #play-again-question {
+    font-size: 4.5em;
+  }
+  #play-again-yes, #play-again-no {
+  font-size: 3.5em;
+  }
+}
+
+@media (max-width: 1200px) {
+ .square-content {
+    font-size: 400%;
+  }
+  #player-data {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 1000px) {
+  #player-select {
+    font-size: 3em;
+  }
+  #game-piece-select {
+    font-size: 2em;
+  }
+  #play-again-question {
+    font-size: 3em;
+  }
+  #play-again-yes, #play-again-no {
+  font-size: 2.5em;
+  }
+}
+
+@media (max-width: 900px) {
+  #player-data, #reset-container {
+    font-size: 1.5em;
   }
 }
