@@ -280,9 +280,6 @@ body, html {
   .square-content {
     font-size: 400%;
   }
-  #player-data, #reset-container {
-    font-size: 2.5em;
-  }
 }
 
 @media (max-height: 500px) {
@@ -324,31 +321,25 @@ body, html {
   }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 450px) {
+  #player-data, #reset-container {
+    font-size: 1.5em;
+  }
   #player-select {
-    font-size: 3em;
+    font-size: 2.5em;
   }
   #game-piece-select {
-    font-size: 2em;
+    font-size: 2.2em;
   }
   #play-again-question {
     font-size: 3em;
   }
   #play-again-yes, #play-again-no {
-  font-size: 2.5em;
+    font-size: 2.5em;
   }
 }
 
-@media (max-width: 900px) {
-  #player-data, #reset-container {
-    font-size: 1.5em;
-  }
-}
-
-@media only screen
-  and (min-device-width: 768px)
-  and (max-device-width: 1024px)
-  and (-webkit-min-device-pixel-ratio: 1) {
+@media (max-width: 1024px) {
     #game-container {
       height: 100%;
       width: 100%;
