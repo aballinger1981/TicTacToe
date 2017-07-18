@@ -2,6 +2,9 @@
 
 body, html {
   height: 100%;
+  width: 100%;
+  min-height: 480px;
+  min-width: 320px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,16 +21,12 @@ body, html {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 960px;
-  width: 867px;
+  height: 90%;
+  width: 45%;
   background-image: url("./images/chalkboard_with_border_resized.gif");
-  background-size: cover;
+  background-size: 100% 100%;
   border-radius: 20px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -480px;
-  margin-left: -433.5px;
+  position: relative;
 }
 
 #player-select {
@@ -36,14 +35,12 @@ body, html {
   align-items: center;
   flex-direction: column;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -480px;
-  margin-left: -433.5px;
+  top: 0;
+  left: 0;
   color: white;
   font-size: 6em;
-  height: 960px !important;
-  width: 867px;
+  height: 100%;
+  width: 100%;
 }
 
 .player-choice:hover {
@@ -105,14 +102,12 @@ body, html {
   color: white;
   font-size: 4em;
   text-align: center;
-  position: relative;
-  height: 960px;
-  width: 867px;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -480px;
-  margin-left: -433.5px;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 #game-pieces {
@@ -134,11 +129,21 @@ body, html {
   color: white;
 }
 
+#game-board-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 80%;
+}
+
 #player-data {
   display: flex;
   visibility: hidden;
   justify-content: space-between;
-  width: 75%;
+  height: 12%;
+  width: 90%;
   font-size: 3em;
   color: white;
   position: relative;
@@ -148,21 +153,9 @@ body, html {
   font-size: 1.2em;
 }
 
-#reset-container {
-  display: flex;
-  visibility: hidden;
-  width: 75%;
-  justify-content: flex-start;
-  font-size: 3em;
-  color: white;
-  position: relative;
-}
-
-#reset-button:hover {
-  color: grey;
-}
-
 #game-board {
+  height: 70%;
+  width: 90%;
   margin-top: 30px;
   margin-bottom: 30px;
   visibility: hidden;
@@ -173,9 +166,9 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 190px;
-  width: 190px;
-  font-size: 15em;
+  height: 100%;
+  width: 33%;
+  font-size: 14em;
   color: white;
 }
 
@@ -190,6 +183,8 @@ body, html {
 }
 
 .row-one, .row-two, .row-three {
+  height: 33%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -208,28 +203,42 @@ body, html {
   border-right: 4px solid white;
 }
 
+#reset-container {
+  display: flex;
+  visibility: hidden;
+  height: 12%;
+  width: 90%;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 3em;
+  color: white;
+  position: relative;
+}
+
+#reset-button:hover {
+  color: grey;
+}
+
 #play-again {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -480px;
-  margin-left: -433.5px;
+  top: 0;
+  left: 0;
   color: white;
-  height: 960px;
-  width: 867px;
+  height: 100%;
+  width: 100%;
   opacity: .9;
   visibility: hidden;
   background-image: url("./images/chalkboard_with_border_resized.gif");
-  background-size: cover;
+  background-size: 100% 100%;
   border-radius: 20px;
 }
 
 #play-again-question {
-  font-size: 6em;
+  font-size: 5em;
   margin-bottom: 25px;
 }
 
@@ -267,5 +276,118 @@ body, html {
   }
   100% {
     color: #FDE58D;
+  }
+}
+
+@media (max-height: 900px) {
+  #player-data, #reset-container {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-height: 1000px) {
+  #game-board {
+    font-size: .7em;
+  }
+}
+
+@media (max-height: 700px) {
+  #game-board {
+    font-size: .4em;
+  }
+}
+
+@media (max-width: 1500px) {
+#player-data, #reset-container {
+  font-size: 2.5em;
+  }
+  #player-select {
+    font-size: 4.5em;
+  }
+  #game-piece-select {
+    font-size: 3em;
+  }
+}
+
+@media (max-width: 1200px) {
+  #player-data, #reset-container {
+      font-size: 2em;
+  }
+  #game-board {
+      font-size: .45em;
+  }
+}
+
+@media (max-width: 1024px) {
+  #game-container {
+    height: 100%;
+    width: 100%;
+    border-radius: 0px;
+  }
+  #player-select {
+    font-size: 6em;
+  }
+  #game-piece-select {
+    font-size: 4em;
+  }
+  #player-data, #reset-container {
+    font-size: 3em;
+  }
+}
+
+@media (max-width: 800px) {
+  #player-data, #reset-container {
+    font-size: 2.5em;
+  }
+}
+
+@media (max-width: 650px) {
+  #player-select {
+    font-size: 5em;
+  }
+  #game-piece-select {
+    font-size: 3em;
+  }
+ }
+
+@media (max-width: 550px) {
+  #player-data, #reset-container {
+    font-size: 2em;
+  }
+  #player-select {
+    font-size: 4.5em;
+  }
+  #game-piece-select {
+    font-size: 2.7em;
+  }
+  #play-again-question {
+    font-size: 4em;
+  }
+  #play-again-yes, #play-again-no {
+    font-size: 3em;
+  }
+}
+
+@media (max-width: 450px) {
+  #player-select {
+    font-size: 3em;
+  }
+  #game-piece-select {
+    font-size: 2.1em;
+  }
+  #player-data {
+    font-size: 1.3em;
+  }
+  #reset-container {
+    font-size: 1.5em;
+  }
+  #game-board {
+    font-size: .4em;
+  }
+  #play-again-question {
+    font-size: 3em;
+  }
+  #play-again-yes, #play-again-no {
+    font-size: 2.5em;
   }
 }
